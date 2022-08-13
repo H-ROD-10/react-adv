@@ -3,9 +3,13 @@ import NoImage from '../assets/no-image.jpg'
 import styles from '../styles/styles.module.css'
 import { ProductContext } from "./ProductCart";
 
+export interface Props{
+  img?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
 
-
-export const ProductImage = ({img=''}) => {
+export const ProductImage = ({img, className, style}: Props) => {
     const {product} = useContext(ProductContext)
     let imgToShow: string;
   
@@ -17,6 +21,11 @@ export const ProductImage = ({img=''}) => {
       imgToShow = NoImage
     }
     return(
-      <img className={styles.productImg} src={imgToShow} alt={product.title} />
+      <img 
+        className={`${styles.productImg} ${className}`} 
+        src={imgToShow} 
+        alt={product.title} 
+        style={style}
+      />
     )
   }
